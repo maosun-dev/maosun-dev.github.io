@@ -1,0 +1,31 @@
+:root{--bg:#f7f4fb;--card:#ffffff;--ink:#231d3a;--sub:#5e5675;--line:#e3dcef;--accent:#7a3aa8;--link:#6a2fb8;
+  --btn:#efe8f8;--btn-ink:#3b2466;--primary:#ffc454;--primary-ink:#3a1c00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1a1745;--card:#241f55;--ink:#f4efff;--sub:#c3b9df;--line:#3a3370;--accent:#ffd27a;--link:#ffc0e0;--btn:#332c6e;--btn-ink:#f4efff}}
+:root[data-theme="dark"]{--bg:#1a1745;--card:#241f55;--ink:#f4efff;--sub:#c3b9df;--line:#3a3370;--accent:#ffd27a;--link:#ffc0e0;--btn:#332c6e;--btn-ink:#f4efff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;line-height:1.8;font-size:16px}
+main{max-width:760px;margin:0 auto;padding:40px 16px 64px}
+a{color:var(--link)}
+h1{font-size:1.7rem;line-height:1.3;margin:0 0 6px}
+.site{margin-bottom:32px}
+.lead{color:var(--sub);margin:0}
+.sec{font-size:1.05rem;color:var(--accent);margin:28px 0 12px}
+.app,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.app{display:flex;gap:18px;align-items:flex-start}
+.icon{border-radius:22px;flex:none;width:96px;height:96px}
+.app h3{margin:0 0 4px;font-size:1.3rem}
+.kana{font-size:.8rem;color:var(--sub);font-weight:normal;margin-left:6px}
+.app p{margin:0 0 12px}
+.links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--btn);color:var(--btn-ink);text-decoration:none;font-size:.9rem;font-weight:bold}
+.btn.primary{background:var(--primary);color:var(--primary-ink)}
+.btn.disabled{opacity:.55}
+.card h2{font-size:1.1rem;margin:0 0 8px}
+.card h3{font-size:1rem;margin:16px 0 4px}
+.card h3:first-child{margin-top:0}
+.card p{margin:0 0 8px}
+.mail{font-size:1.1rem;font-weight:bold}
+.note{color:var(--sub);font-size:.9rem}
+.back{margin:0 0 12px;font-size:.9rem}
+footer{margin-top:32px;text-align:center;color:var(--sub);font-size:.9rem}
+@media (max-width:480px){.app{flex-direction:column;align-items:center;text-align:center}.links{justify-content:center}}
