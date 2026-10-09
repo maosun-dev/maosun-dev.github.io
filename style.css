@@ -1,31 +1,86 @@
-:root{--bg:#f7f4fb;--card:#ffffff;--ink:#231d3a;--sub:#5e5675;--line:#e3dcef;--accent:#7a3aa8;--link:#6a2fb8;
-  --btn:#efe8f8;--btn-ink:#3b2466;--primary:#ffc454;--primary-ink:#3a1c00}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1a1745;--card:#241f55;--ink:#f4efff;--sub:#c3b9df;--line:#3a3370;--accent:#ffd27a;--link:#ffc0e0;--btn:#332c6e;--btn-ink:#f4efff}}
-:root[data-theme="dark"]{--bg:#1a1745;--card:#241f55;--ink:#f4efff;--sub:#c3b9df;--line:#3a3370;--accent:#ffd27a;--link:#ffc0e0;--btn:#332c6e;--btn-ink:#f4efff}
+:root{
+  --felt:#1f5b47;--felt-deep:#164536;--tile:#f7f3e8;--tile-back:#3a9b6e;--tile-edge:#d9d1bc;
+  --bg:#eef2ef;--panel:#ffffff;--ink:#17261f;--sub:#52645b;--line:#d3ddd7;
+  --red:#c8323a;--blue:#2a86bf;--navy:#22365e;--link:#1d6b51;
+  --btn:#1f5b47;--btn-edge:#123b2e;--btn-ink:#ffffff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --felt:#18493a;--felt-deep:#0f3126;--bg:#121c18;--panel:#1a2822;--ink:#e6eee9;--sub:#a3b5ab;--line:#2c3f36;
+  --link:#7fd2ad;--btn:#3a9b6e;--btn-edge:#1f5b47;--blue:#5aaee0;--red:#ec6a70}}
+:root[data-theme="dark"]{
+  --felt:#18493a;--felt-deep:#0f3126;--bg:#121c18;--panel:#1a2822;--ink:#e6eee9;--sub:#a3b5ab;--line:#2c3f36;
+  --link:#7fd2ad;--btn:#3a9b6e;--btn-edge:#1f5b47;--blue:#5aaee0;--red:#ec6a70}
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif;line-height:1.8;font-size:16px}
-main{max-width:760px;margin:0 auto;padding:40px 16px 64px}
-a{color:var(--link)}
-h1{font-size:1.7rem;line-height:1.3;margin:0 0 6px}
-.site{margin-bottom:32px}
-.lead{color:var(--sub);margin:0}
-.sec{font-size:1.05rem;color:var(--accent);margin:28px 0 12px}
-.app,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-.app{display:flex;gap:18px;align-items:flex-start}
-.icon{border-radius:22px;flex:none;width:96px;height:96px}
-.app h3{margin:0 0 4px;font-size:1.3rem}
-.kana{font-size:.8rem;color:var(--sub);font-weight:normal;margin-left:6px}
-.app p{margin:0 0 12px}
-.links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.btn{display:inline-block;padding:8px 16px;border-radius:999px;background:var(--btn);color:var(--btn-ink);text-decoration:none;font-size:.9rem;font-weight:bold}
-.btn.primary{background:var(--primary);color:var(--primary-ink)}
-.btn.disabled{opacity:.55}
-.card h2{font-size:1.1rem;margin:0 0 8px}
-.card h3{font-size:1rem;margin:16px 0 4px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
+  line-height:1.85;font-size:16px;font-feature-settings:"palt" 0}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap,main{max-width:760px;margin:0 auto;padding-left:16px;padding-right:16px}
+h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;font-weight:400;letter-spacing:.02em}
+
+/* ---------- 雀卓のヘッダー（トップページ） ---------- */
+.table{background:radial-gradient(120% 90% at 30% 20%,var(--felt) 0%,var(--felt-deep) 100%);color:#fff;
+  padding:56px 0 40px;overflow:hidden}
+.stack{margin:0;display:inline-flex;flex-direction:column;align-items:flex-start;--t:clamp(38px,11.5vw,70px)}
+.row{display:flex;gap:4px}
+.row-top{margin-left:calc(var(--t) * 2.6);margin-bottom:10px}
+.stack i{font-style:normal;display:grid;place-items:center;width:var(--t);height:calc(var(--t) * 1.32);
+  background:linear-gradient(180deg,#fffdf6 0%,var(--tile) 70%,var(--tile-edge) 100%);border-radius:calc(var(--t) * .12);
+  box-shadow:0 calc(var(--t) * .1) 0 var(--tile-back),0 calc(var(--t) * .1 + 6px) 10px rgba(0,0,0,.35);
+  font-family:"Dela Gothic One",sans-serif;font-size:calc(var(--t) * .62);line-height:1;color:var(--navy);
+  transform:rotate(var(--r,0deg));animation:drop .7s cubic-bezier(.3,1.35,.5,1) backwards;animation-delay:var(--d,0s)}
+.stack i:nth-child(3n+1){color:#c8323a}
+.stack i:nth-child(3n+2){color:#1f7a50}
+.row:not(.row-top) i:nth-child(1){--d:.05s}.row:not(.row-top) i:nth-child(2){--d:.1s}
+.row:not(.row-top) i:nth-child(3){--d:.15s}.row:not(.row-top) i:nth-child(4){--d:.2s}
+.row:not(.row-top) i:nth-child(5){--d:.25s}.row:not(.row-top) i:nth-child(6){--d:.3s}
+.row-top i:nth-child(1){--r:-4deg;--d:.55s}.row-top i:nth-child(2){--r:2deg;--d:.68s}.row-top i:nth-child(3){--r:7deg;--d:.81s}
+.rack{display:block;height:14px;margin-top:calc(var(--t) * .1 + 4px);width:calc(100% + 24px);margin-left:-12px;
+  background:#0d2a21;border-radius:4px;box-shadow:inset 0 2px 0 rgba(255,255,255,.12)}
+@keyframes drop{from{transform:translateY(-110vh) rotate(var(--r,0deg));opacity:0}to{transform:rotate(var(--r,0deg));opacity:1}}
+@media (prefers-reduced-motion:reduce){.stack i{animation:none}}
+.lead{margin:28px 0 0;font-size:1.05rem;color:#d7eadf}
+
+/* ---------- 作品の並び ---------- */
+.work{display:grid;grid-template-columns:112px 1fr;gap:24px;padding:36px 0;border-bottom:1px solid var(--line)}
+.work:last-of-type{border-bottom:0}
+.icon{width:112px;height:112px;border-radius:26px;box-shadow:0 8px 0 var(--line)}
+.work h2{font-size:1.6rem;line-height:1.3;margin:0 0 8px}
+.kana{font-family:"Zen Kaku Gothic New",sans-serif;font-size:.85rem;color:var(--sub);margin-left:6px;letter-spacing:.08em}
+.work p{margin:0 0 16px;max-width:36em}
+.kind{display:inline-block;margin:0 0 6px!important;font-size:.8rem;font-weight:700;line-height:1;padding:5px 9px;border-radius:4px;color:#fff}
+.kind-game{background:var(--red)}
+.kind-tool{background:var(--blue)}
+.links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;font-size:.92rem}
+.btn{display:inline-block;padding:9px 20px 8px;border-radius:8px;background:var(--btn);color:var(--btn-ink);
+  text-decoration:none;font-weight:700;box-shadow:0 4px 0 var(--btn-edge);transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translateY(1px);box-shadow:0 3px 0 var(--btn-edge)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--btn-edge)}
+.soon{color:var(--sub)}
+.site-foot{padding-top:24px;padding-bottom:56px;border-top:1px solid var(--line);font-size:.92rem}
+
+/* ---------- サポート・規約などの下層ページ ---------- */
+main:not(.wrap){padding-top:0;padding-bottom:64px}
+.back{margin:0 -16px 32px;padding:14px 16px;background:var(--felt);font-size:.92rem}
+.back a{color:#fff;font-family:"Dela Gothic One",sans-serif;text-decoration:none;letter-spacing:.04em}
+.back a:hover{text-decoration:underline}
+main:not(.wrap) > h1{font-size:1.75rem;line-height:1.35;margin:0 0 24px}
+.sec{font-size:1.1rem;margin:36px 0 12px;padding-left:12px;border-left:5px solid var(--red)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.card h2,.card h3{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;letter-spacing:0}
+.card h2{font-size:1.15rem;margin:0 0 8px}
+.card h3{font-size:1rem;margin:20px 0 4px}
 .card h3:first-child{margin-top:0}
 .card p{margin:0 0 8px}
-.mail{font-size:1.1rem;font-weight:bold}
+.card p:last-child{margin-bottom:0}
+.mail{font-size:1.1rem;font-weight:700}
 .note{color:var(--sub);font-size:.9rem}
-.back{margin:0 0 12px;font-size:.9rem}
-footer{margin-top:32px;text-align:center;color:var(--sub);font-size:.9rem}
-@media (max-width:480px){.app{flex-direction:column;align-items:center;text-align:center}.links{justify-content:center}}
+main:not(.wrap) footer{margin-top:40px;text-align:center;font-size:.92rem}
+
+@media (max-width:520px){
+  .table{padding:40px 0 32px}
+  .work{grid-template-columns:72px 1fr;gap:16px;padding:28px 0}
+  .icon{width:72px;height:72px;border-radius:17px;box-shadow:0 5px 0 var(--line)}
+  .work h2{font-size:1.35rem}
+}
