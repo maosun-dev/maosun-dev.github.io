@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" width="112" height="112">
+  <defs>
+    <radialGradient id="felt" cx="30%" cy="20%" r="100%">
+      <stop offset="0" stop-color="#2a7359"/>
+      <stop offset="1" stop-color="#164536"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset=".7" stop-color="#f7f3e8"/>
+      <stop offset="1" stop-color="#d9d1bc"/>
+    </linearGradient>
+  </defs>
+  <rect width="112" height="112" rx="26" fill="url(#felt)"/>
+  <!-- 音符を書いた牌（少し傾けて置く） -->
+  <g transform="rotate(-7 56 56)">
+    <rect x="31" y="22" width="50" height="66" rx="7" fill="#000" opacity=".3" transform="translate(2 9)"/>
+    <rect x="31" y="22" width="50" height="66" rx="7" fill="#3a9b6e" transform="translate(0 6)"/>
+    <rect x="31" y="22" width="50" height="66" rx="7" fill="url(#face)"/>
+    <!-- 連なった八分音符 -->
+    <g fill="#c8323a">
+      <rect x="49" y="35" width="4" height="32" rx="1"/>
+      <rect x="67" y="31" width="4" height="32" rx="1"/>
+      <path d="M49 35 L71 31 L71 38 L49 42 Z"/>
+      <ellipse cx="45.5" cy="68" rx="7.2" ry="5.4" transform="rotate(-22 45.5 68)"/>
+      <ellipse cx="63.5" cy="64" rx="7.2" ry="5.4" transform="rotate(-22 63.5 64)"/>
+    </g>
+  </g>
+</svg>
