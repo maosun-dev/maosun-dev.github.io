@@ -1,0 +1,78 @@
+/* ブログ（style.css の色を使う）。上は雀卓の細い帯、本文は白い紙 */
+.band{background:radial-gradient(120% 140% at 20% 0%,var(--felt) 0%,var(--felt-deep) 100%);color:#fff;padding:14px 0 12px;
+  box-shadow:inset 0 -6px 0 #0d2a21}
+.bwrap{max-width:1080px;margin:0 auto;padding-left:16px;padding-right:16px}
+.band .bwrap{display:flex;align-items:baseline;gap:14px}
+.band a{color:#fff;text-decoration:none}
+.band .home{font-family:"Dela Gothic One",sans-serif;font-size:1.25rem;letter-spacing:.03em}
+.band .crumb{font-size:.9rem;color:#cfe6da;padding-left:14px;border-left:1px solid rgba(255,255,255,.3)}
+.band a:hover{text-decoration:underline}
+
+/* 本文と、右のサイドメニュー（スマホでは下に回る） */
+.blog{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding-top:28px;padding-bottom:40px}
+@media (min-width:920px){.blog{grid-template-columns:250px minmax(0,1fr);gap:36px}.blog>.side{order:-1}}
+.col{min-width:0;max-width:none;margin:0;padding:0}
+.post{background:var(--panel);padding:32px 20px 40px;border-radius:14px;box-shadow:0 6px 0 var(--line)}
+@media (min-width:800px){.post{padding-left:48px;padding-right:48px}}
+.post h1{font-size:clamp(1.5rem,4.6vw,2.05rem);line-height:1.4;margin:10px 0 28px}
+.post h2{font-size:1.3rem;line-height:1.45;margin:48px 0 14px}
+/* 手順の番号＝ドンの音符（赤い丸・白いふち・黒い外まわり） */
+.post h2.step{display:flex;align-items:center;gap:14px}
+.don{flex:none;display:grid;place-items:center;width:2.1em;height:2.1em;border-radius:50%;background:#e0452b;color:#fff;font-size:1.05em;
+  border:3px solid #fff;box-shadow:0 0 0 3px #2b2e35,0 4px 0 3px #2b2e35}
+.post p{margin:0 0 1.1em}
+.post ul{margin:0 0 1.2em;padding-left:1.3em}
+.post li{margin:.35em 0}
+.post li::marker{color:var(--red)}
+.post strong{background:linear-gradient(transparent 62%,rgba(242,183,5,.38) 62%)}
+.post hr{border:0;height:1px;background:var(--line);margin:40px 0}
+.post .note{font-size:.88rem;color:var(--sub);background:var(--bg);border-radius:8px;padding:10px 14px}
+.post figure{margin:20px 0 28px}
+.post figure img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:10px;border:1px solid var(--line)}
+.post figcaption{font-size:.85rem;color:var(--sub);margin-top:8px;text-align:center}
+
+/* 写真の印と同じ赤丸の番号 */
+.num{display:inline-grid;place-items:center;width:1.45em;height:1.45em;margin:0 .15em;border-radius:50%;background:#e0452b;color:#fff;
+  font-family:"Dela Gothic One",sans-serif;font-size:.78em;line-height:1;vertical-align:.1em;box-shadow:0 0 0 2px var(--panel),0 0 0 3px #e0452b}
+
+.video{position:relative;aspect-ratio:16/9;margin:16px 0 24px;border-radius:10px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+.meta{display:flex;align-items:center;gap:10px;margin:0;font-size:.85rem;color:var(--sub)}
+.meta .kind{margin:0!important}
+
+/* 一覧 */
+.list-title{font-size:2rem;margin:8px 0 4px}
+.list-lead{color:var(--sub);margin:0 0 24px}
+.posts{list-style:none;margin:0 0 40px;padding:0}
+.posts a{display:block;background:var(--panel);border-radius:12px;padding:18px 20px;margin-bottom:14px;color:var(--ink);text-decoration:none;
+  box-shadow:0 5px 0 var(--line);transition:transform .08s,box-shadow .08s}
+.posts a:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--line)}
+.posts b{display:block;font-family:"Dela Gothic One",sans-serif;font-weight:400;font-size:1.15rem;line-height:1.45;margin:8px 0 4px}
+.posts .desc{display:block;font-size:.92rem;color:var(--sub)}
+@media (prefers-reduced-motion:reduce){.posts a{transition:none}}
+
+/* タグ：太鼓の「ふち」の色の札 */
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px!important;padding:0!important}
+.post .tags:last-child{margin:36px 0 0!important}
+.tags li{margin:0!important}
+.tags a,.tagcloud a{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 10px;border-radius:999px;background:var(--bg);
+  border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.85rem;line-height:1.6}
+.tags a::before,.tagcloud a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 2px var(--panel),0 0 0 3px var(--blue)}
+.tags a:hover,.tagcloud a:hover{border-color:var(--blue)}
+
+.side{display:flex;flex-direction:column;gap:20px;align-self:start}
+@media (min-width:920px){.side{position:sticky;top:20px}}
+.side section{background:var(--panel);border-radius:12px;padding:16px 18px 18px;box-shadow:0 5px 0 var(--line)}
+.side h2{font-size:1rem;margin:0 0 12px}
+.tagcloud{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tagcloud .n{font-size:.75rem;color:var(--sub);font-weight:700}
+.tagcloud a[aria-current]{border-color:var(--blue);background:var(--panel);font-weight:700}
+.recent{list-style:none;margin:0;padding:0}
+.recent li{padding:10px 0;border-top:1px solid var(--line);font-size:.9rem;line-height:1.55}
+.recent li:first-child{border-top:0;padding-top:0}
+.recent a{color:var(--ink);text-decoration:none}
+.recent a:hover{color:var(--link);text-decoration:underline}
+.recent time{display:block;font-size:.78rem;color:var(--sub);margin-top:2px}
+.list-kicker{font-size:.85rem;color:var(--sub);margin:24px 0 0}
+.list-kicker + .list-title{margin-top:4px}

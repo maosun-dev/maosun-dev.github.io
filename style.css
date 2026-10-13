@@ -80,6 +80,20 @@ main:not(.wrap) > h1{font-size:1.75rem;line-height:1.35;margin:0 0 24px}
 .note{color:var(--sub);font-size:.9rem}
 main:not(.wrap) footer{margin-top:40px;text-align:center;font-size:.92rem}
 
+/* ---------- ブログの入口（トップページ） ---------- */
+.blog-entry{padding-top:8px;padding-bottom:40px}
+.be-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.be-head h2{font-size:1.6rem;margin:0}
+.be-head a{font-size:.92rem}
+.be-card{display:block;background:var(--panel);border-radius:12px;padding:18px 20px;color:var(--ink);text-decoration:none;
+  box-shadow:0 5px 0 var(--line);transition:transform .08s,box-shadow .08s}
+.be-card:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--line)}
+.be-card .meta{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--sub)}
+.be-card .meta .kind{margin:0!important}
+.be-card b{display:block;font-family:"Dela Gothic One",sans-serif;font-weight:400;font-size:1.15rem;line-height:1.45;margin:8px 0 4px}
+.be-card .desc{display:block;font-size:.92rem;color:var(--sub)}
+@media (prefers-reduced-motion:reduce){.be-card{transition:none}}
+
 @media (max-width:520px){
   .table{padding:40px 0 32px}
   .work{grid-template-columns:72px 1fr;gap:16px;padding:28px 0}
