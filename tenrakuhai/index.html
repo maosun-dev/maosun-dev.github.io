@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>転落牌</title>
+<meta name="description" content="積んで、そろえて、落とさない。麻雀牌を積み上げて役をつくる、ブラウザでそのまま遊べるゲーム。">
+<!-- LINE・Xなどでリンクを送ったときのカード表示 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="転落牌">
+<meta property="og:title" content="転落牌（てんらくはい）">
+<meta property="og:description" content="積んで、そろえて、落とさない。麻雀牌を積み上げて役をつくる、ブラウザでそのまま遊べるゲーム。">
+<meta property="og:url" content="https://maosun-dev.github.io/tenrakuhai/">
+<meta property="og:image" content="https://maosun-dev.github.io/tenrakuhai/assets/img/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="転落牌のタイトル。転・落・牌の3枚の牌が積み重なっている">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ホーム画面に追加したときのアイコンと全画面表示 -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1a1745">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="転落牌">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- アイコン（絵文字の代わり。どの端末でも同じ見た目になるように描いたもの）。使い方：<svg class="ic"><use href="#i-名前"/></svg>（js/main.js の ic()） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pause" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="3.6" width="5.8" height="16.8" rx="1.8" fill="#4f9e83"/><rect x="4.6" y="3.6" width="5.8" height="13.6" rx="1.8" fill="#fff6e6"/><rect x="13.6" y="3.6" width="5.8" height="16.8" rx="1.8" fill="#4f9e83"/><rect x="13.6" y="3.6" width="5.8" height="13.6" rx="1.8" fill="#fff6e6"/></g></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M14.6 16V3.6c2.8.3 5 2.1 5.6 4.8" fill="none" stroke="#2a1d52" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 16V3.6c2.8.3 5 2.1 5.6 4.8" fill="none" stroke="#ffd27a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="17.4" r="4.8" fill="#c98a2c" stroke="#2a1d52" stroke-width="1.3"/><circle cx="10" cy="16.2" r="4.8" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.3"/><circle cx="10" cy="16.2" r="2.8" fill="none" stroke="#3b6fd8" stroke-width="1.3"/><circle cx="10" cy="16.2" r="1.15" fill="#d6283a"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 10.2h3.8L12 5.8v14.8l-5.2-4.4H3z" fill="#c98a2c" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 9h3.8L12 4.6v14.8L6.8 15H3z" fill="#ffd27a" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M15.2 8.6a4.6 4.6 0 0 1 0 6.8M18 5.8a8.4 8.4 0 0 1 0 12.4" stroke="#2a1d52" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M15.2 8.6a4.6 4.6 0 0 1 0 6.8M18 5.8a8.4 8.4 0 0 1 0 12.4" stroke="#ff7aa2" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M3 10.2h3.8L12 5.8v14.8l-5.2-4.4H3z" fill="#c98a2c" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M3 9h3.8L12 4.6v14.8L6.8 15H3z" fill="#ffd27a" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M15.4 9.2l5.2 5.2M20.6 9.2l-5.2 5.2" stroke="#2a1d52" stroke-width="3.4" stroke-linecap="round"/><path d="M15.4 9.2l5.2 5.2M20.6 9.2l-5.2 5.2" stroke="#ff7aa2" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><rect x="5" y="6.6" width="14" height="12" fill="#e2cfb2" stroke="#2a1d52" stroke-width="1.3"/><rect x="5" y="5.4" width="14" height="12" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.3"/><path d="M7.8 8.8h8.4M7.8 11.4h8.4M7.8 14h4.6" stroke="#8f7bb8" stroke-width="1.2" stroke-linecap="round"/><rect x="14" y="12.8" width="2.6" height="2.6" rx=".4" fill="#d6283a"/><rect x="2.2" y="3.6" width="3.6" height="16.4" rx="1.8" fill="#ffd27a" stroke="#2a1d52" stroke-width="1.3"/><rect x="18.2" y="3.6" width="3.6" height="16.4" rx="1.8" fill="#ffd27a" stroke="#2a1d52" stroke-width="1.3"/><path d="M4 20v2M20 20v2" stroke="#d6283a" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"><rect x="6" y="17.6" width="12" height="4.6" rx="1.2" fill="#4f9e83"/><rect x="6" y="17.6" width="12" height="3" rx="1.2" fill="#fff6e6"/><rect x="5" y="12.8" width="12" height="4.6" rx="1.2" fill="#4f9e83"/><rect x="5" y="12.8" width="12" height="3" rx="1.2" fill="#fff6e6"/><rect x="6.8" y="8" width="12" height="4.6" rx="1.2" fill="#4f9e83"/><rect x="6.8" y="8" width="12" height="3" rx="1.2" fill="#fff6e6"/><path d="M7.8 7.6L8.4 2.6l2.6 2.4 2-3.4 2 3.4 2.6-2.4.6 5z" fill="#ffd27a"/></g><circle cx="13" cy="5.6" r=".9" fill="#ff7aa2"/></symbol>
+  <symbol id="i-tile" viewBox="0 0 24 24"><rect x="5.4" y="2.6" width="13.2" height="19" rx="2.4" fill="#4f9e83" stroke="#2a1d52" stroke-width="1.3"/><rect x="5.4" y="2.6" width="13.2" height="16" rx="2.4" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.3"/><rect x="8.4" y="7.4" width="7.2" height="4.4" rx=".8" fill="none" stroke="#d6283a" stroke-width="1.6"/><rect x="11.2" y="5" width="1.6" height="10.2" rx=".6" fill="#d6283a"/></symbol>
+  <symbol id="i-tiles" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"><g transform="rotate(-24 12 21)"><rect x="8" y="6.6" width="8" height="11.6" rx="1.6" fill="#4f9e83"/><rect x="8" y="6.6" width="8" height="9.6" rx="1.6" fill="#fff6e6"/><rect x="11.2" y="8.6" width="1.6" height="5.2" rx=".6" fill="#1f8a4c" stroke="none"/></g><g transform="rotate(24 12 21)"><rect x="8" y="6.6" width="8" height="11.6" rx="1.6" fill="#4f9e83"/><rect x="8" y="6.6" width="8" height="9.6" rx="1.6" fill="#fff6e6"/><circle cx="12" cy="11.4" r="2" fill="none" stroke="#3b6fd8" stroke-width="1.2"/></g><rect x="8" y="6.6" width="8" height="11.6" rx="1.6" fill="#4f9e83"/><rect x="8" y="6.6" width="8" height="9.6" rx="1.6" fill="#fff6e6"/></g><rect x="9.9" y="9.6" width="4.2" height="2.8" rx=".5" fill="none" stroke="#d6283a" stroke-width="1.1"/><rect x="11.3" y="8.2" width="1.4" height="6" rx=".5" fill="#d6283a"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M8.2 11V7.6a3.8 3.8 0 0 1 7.6 0V11" fill="none" stroke="#2a1d52" stroke-width="3.6" stroke-linecap="round"/><path d="M8.2 11V7.6a3.8 3.8 0 0 1 7.6 0V11" fill="none" stroke="#ffd27a" stroke-width="1.8" stroke-linecap="round"/><rect x="5" y="9.6" width="14" height="12.2" rx="2.2" fill="#4f9e83" stroke="#2a1d52" stroke-width="1.3"/><rect x="5" y="9.6" width="14" height="9.8" rx="2.2" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.3"/><circle cx="12" cy="13.4" r="1.6" fill="#2a1d52"/><rect x="11.3" y="13.8" width="1.4" height="3" rx=".5" fill="#2a1d52"/></symbol>
+  <symbol id="i-pointer" viewBox="0 0 24 24"><rect x="5" y="17.6" width="14" height="4" rx="1.2" fill="#ff7aa2" fill-opacity=".35" stroke="#ff7aa2" stroke-width="1.3" stroke-dasharray="2 1.6"/><rect x="8" y="2.4" width="8" height="9.8" rx="1.6" fill="#4f9e83" stroke="#2a1d52" stroke-width="1.2"/><rect x="8" y="2.4" width="8" height="8" rx="1.6" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.2"/><circle cx="12" cy="6.4" r="1.7" fill="none" stroke="#3b6fd8" stroke-width="1.2"/><path d="M9.6 13.4l2.4 2.2 2.4-2.2" stroke="#2a1d52" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.6 13.4l2.4 2.2 2.4-2.2" stroke="#ffd27a" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><circle cx="10" cy="12.4" r="9" fill="#ffd27a" fill-opacity=".35"/><rect x="5.4" y="5.4" width="9.2" height="14.6" rx="1.8" fill="#4f9e83" stroke="#2a1d52" stroke-width="1.2"/><rect x="5.4" y="5.4" width="9.2" height="12.4" rx="1.8" fill="#fff6e6" stroke="#2a1d52" stroke-width="1.2"/><path d="M7.8 8.2v3.4M10 8.2v3.4M12.2 8.2v3.4M8.9 12.8v3.4M11.1 12.8v3.4" stroke="#1f8a4c" stroke-width="1.3" stroke-linecap="round"/><path d="M19.2 1.6L20.28 4.12L22.8 5.2L20.28 6.28L19.2 8.8L18.12 6.28L15.6 5.2L18.12 4.12Z" fill="#ffd27a" stroke="#2a1d52" stroke-width="1" stroke-linejoin="round"/><path d="M20 12.8L20.78 14.62L22.6 15.4L20.78 16.18L20 18L19.22 16.18L17.4 15.4L19.22 14.62Z" fill="#fff6e6" stroke="#2a1d52" stroke-width=".9" stroke-linejoin="round"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path transform="translate(0 1.4)" d="M12 20.6C6 16.3 2.4 12.9 2.4 8.4 2.4 5.4 4.7 3.4 7.4 3.4c2 0 3.7 1.2 4.6 2.9.9-1.7 2.6-2.9 4.6-2.9 2.7 0 5 2 5 5 0 4.5-3.6 7.9-9.6 12.2z" fill="#c93d6a" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M12 20.6C6 16.3 2.4 12.9 2.4 8.4 2.4 5.4 4.7 3.4 7.4 3.4c2 0 3.7 1.2 4.6 2.9.9-1.7 2.6-2.9 4.6-2.9 2.7 0 5 2 5 5 0 4.5-3.6 7.9-9.6 12.2z" fill="#ff6f98" stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.2 6.2c-1 .5-1.6 1.4-1.6 2.6" stroke="#ffd0dc" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-heart-empty" viewBox="0 0 24 24"><path transform="translate(0 1.4)" d="M12 20.6C6 16.3 2.4 12.9 2.4 8.4 2.4 5.4 4.7 3.4 7.4 3.4c2 0 3.7 1.2 4.6 2.9.9-1.7 2.6-2.9 4.6-2.9 2.7 0 5 2 5 5 0 4.5-3.6 7.9-9.6 12.2z" fill="#241a4a"/><path d="M12 20.6C6 16.3 2.4 12.9 2.4 8.4 2.4 5.4 4.7 3.4 7.4 3.4c2 0 3.7 1.2 4.6 2.9.9-1.7 2.6-2.9 4.6-2.9 2.7 0 5 2 5 5 0 4.5-3.6 7.9-9.6 12.2z" fill="#3d2c6e" stroke="#ff8fb6" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="2.2 1.6"/></symbol>
+  <symbol id="i-heartbreak" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round" fill="#ff6f98"><path transform="rotate(-8 7 12) translate(-1 .6)" d="M12 6.3L10.6 9.4L12.8 11.8L10.9 14.8L12 20.6C6 16.3 2.4 12.9 2.4 8.4C2.4 5.4 4.7 3.4 7.4 3.4c2 0 3.7 1.2 4.6 2.9z"/><path transform="rotate(8 17 12) translate(1 .6)" d="M12 6.3c.9-1.7 2.6-2.9 4.6-2.9 2.7 0 5 2 5 5 0 4.5-3.6 7.9-9.6 12.2L10.9 14.8L12.8 11.8L10.6 9.4z"/></g><path d="M5.2 6.6c-.9.5-1.4 1.3-1.4 2.4" stroke="#ffd0dc" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4.4 15V12a7.6 7.6 0 0 1 15.2 0v3" fill="none" stroke="#2a1d52" stroke-width="3.6" stroke-linecap="round"/><path d="M4.4 15V12a7.6 7.6 0 0 1 15.2 0v3" fill="none" stroke="#ffd27a" stroke-width="1.8" stroke-linecap="round"/><g stroke="#2a1d52" stroke-width="1.3"><rect x="2.2" y="12.6" width="5.4" height="9" rx="2" fill="#c93d6a"/><rect x="2.2" y="12.6" width="5.4" height="7.4" rx="2" fill="#ff6f98"/><rect x="16.4" y="12.6" width="5.4" height="9" rx="2" fill="#c93d6a"/><rect x="16.4" y="12.6" width="5.4" height="7.4" rx="2" fill="#ff6f98"/></g></symbol>
+  <symbol id="i-party" viewBox="0 0 24 24"><path d="M12 .8v3.4" stroke="#2a1d52" stroke-width="1.3"/><path d="M11 7c-1.6 3 1.6 5 0 8s1.2 4-.4 6.6" stroke="#ff7aa2" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M13 7c1.6 3-1.6 5 0 8s-1.2 4 .4 6.6" stroke="#7cc9ae" stroke-width="1.8" fill="none" stroke-linecap="round"/><g stroke="#2a1d52" stroke-width="1.3" stroke-linejoin="round" fill="#ffd27a"><path transform="rotate(38 12 4)" d="M12 4A6 6 0 0 0 12 16Z"/><path transform="rotate(-38 12 4)" d="M12 4A6 6 0 0 1 12 16Z"/></g><circle cx="4.4" cy="16.4" r="1.1" fill="#ff7aa2"/><circle cx="19.8" cy="17.2" r="1.1" fill="#7cc9ae"/><rect x="6.6" y="20" width="1.8" height="1.8" rx=".3" fill="#ffd27a" transform="rotate(20 7.5 20.9)"/><rect x="16.4" y="13" width="1.8" height="1.8" rx=".3" fill="#b18cff" transform="rotate(-25 17.3 13.9)"/></symbol>
+  <symbol id="i-medal1" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"><path d="M8.6 6L6.6 1.2h3.8L12.2 5" fill="#ff7aa2"/><path d="M15.4 6l2-4.8h-3.8L11.8 5" fill="#6bc8ff"/><rect x="5.4" y="5.2" width="13.2" height="16.8" rx="2.2" fill="#e0a040"/><rect x="5.4" y="5.2" width="13.2" height="13.8" rx="2.2" fill="#fff6e6"/></g><rect x="8.2" y="11.2" width="7.6" height="2" rx="1.0" fill="#c47d1c"/></symbol>
+  <symbol id="i-medal2" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"><path d="M8.6 6L6.6 1.2h3.8L12.2 5" fill="#ff7aa2"/><path d="M15.4 6l2-4.8h-3.8L11.8 5" fill="#6bc8ff"/><rect x="5.4" y="5.2" width="13.2" height="16.8" rx="2.2" fill="#a9b1c3"/><rect x="5.4" y="5.2" width="13.2" height="13.8" rx="2.2" fill="#fff6e6"/></g><rect x="9" y="9.2" width="6" height="1.9" rx="0.95" fill="#6b7489"/><rect x="8.2" y="13.4" width="7.6" height="2" rx="1.0" fill="#6b7489"/></symbol>
+  <symbol id="i-medal3" viewBox="0 0 24 24"><g stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"><path d="M8.6 6L6.6 1.2h3.8L12.2 5" fill="#ff7aa2"/><path d="M15.4 6l2-4.8h-3.8L11.8 5" fill="#6bc8ff"/><rect x="5.4" y="5.2" width="13.2" height="16.8" rx="2.2" fill="#b8703f"/><rect x="5.4" y="5.2" width="13.2" height="13.8" rx="2.2" fill="#fff6e6"/></g><rect x="8.6" y="8.4" width="6.8" height="1.8" rx="0.9" fill="#8a4a22"/><rect x="9.4" y="11.4" width="5.2" height="1.8" rx="0.9" fill="#8a4a22"/><rect x="8.2" y="14.4" width="7.6" height="2" rx="1.0" fill="#8a4a22"/></symbol>
+  <symbol id="i-world" viewBox="0 0 24 24"><circle cx="12" cy="13.2" r="9.4" fill="#3b6fd8" stroke="#2a1d52" stroke-width="1.3"/><circle cx="12" cy="12" r="9.4" fill="#6bc8ff" stroke="#2a1d52" stroke-width="1.3"/><path d="M5.6 6.4c1.8.2 2.6 1.4 2.2 2.8-.4 1.2.6 2 1.8 2.2 1.4.2 1.6 1.6.8 2.6-.8 1-.4 2.4.4 3.6M14.4 3.2c-.6 1.4.2 2.6 1.6 2.8 1.6.2 2.2 1.6 1.4 2.8-.6 1 .2 2 1.4 2.2l2.2.2M15.4 15.6c1-.6 2.2-.2 2.6.8" fill="none" stroke="#2a1d52" stroke-width="1.1" stroke-linecap="round"/><path d="M6.8 7.2c1 .4 1.2 1.2.9 2.1-.5 1.5.7 2.6 2 2.8 1 .2 1 1.2.4 2-.5.7-.5 1.6-.1 2.5-2.8-1.2-4.6-4-4.4-7.2.3-.8.7-1.5 1.2-2.2zM14.7 4.1c.9.3 1.9.8 2.7 1.5.8.7 1.5 1.6 2 2.6l-1.6-.2c-1-.2-1.2-1-.8-1.8.6-1.1-.2-2-1.4-2.1h-.9z" fill="#7cc9ae"/><ellipse cx="8.4" cy="6" rx="2" ry="1" fill="#fff" fill-opacity=".55" transform="rotate(-30 8.4 6)"/></symbol>
+  <symbol id="i-boom" viewBox="0 0 24 24"><path d="M12 1.5l2.2 5.4 5.2-2.6-2 5.4 5.1 2.3-5.1 2.3 2 5.4-5.2-2.6L12 22.5l-2.2-5.4-5.2 2.6 2-5.4-5.1-2.3 5.1-2.3-2-5.4 5.2 2.6z" fill="#ff8a3d" stroke="#2a1d52" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 6.5l1.3 3.2 3.2-1.3-1.3 3.2 3.2 1.4-3.2 1.4 1.3 3.2-3.2-1.3L12 19.5l-1.3-3.2-3.2 1.3 1.3-3.2-3.2-1.4 3.2-1.4-1.3-3.2 3.2 1.3z" fill="#ffe66b"/></symbol>
+</svg>
+<div id="app">
+  <div id="nightfx"><div class="stars"></div></div>
+  <div id="skyfx"><div class="dusk"></div><canvas id="aurora"></canvas></div>
+  <canvas id="gl"></canvas>
+  <div id="hud">
+    <div class="pill"><b id="score">0</b> 点</div>
+    <div class="pill">山 <b id="wall">136</b></div>
+    <div class="pill" id="hearts"><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg><svg class="ic"><use href="#i-heart"/></svg></div>
+    <button class="pill" id="quitBtn" aria-label="ゲームをやめる" style="pointer-events:auto;margin-left:auto"><svg class="ic"><use href="#i-pause"/></svg></button>
+    <button class="pill" id="music" aria-label="音楽のオンオフ" style="pointer-events:auto"><svg class="ic"><use href="#i-music"/></svg></button>
+    <button class="pill" id="mute" aria-label="効果音のオンオフ"><svg class="ic"><use href="#i-sound"/></svg></button>
+  </div>
+  <div id="toast"></div>
+  <div id="bottom">
+    <div id="coach" hidden></div>
+    <div id="sheet">
+      <div id="handlabel"></div>
+      <div id="hand"></div>
+      <div id="ctrl"></div>
+    </div>
+  </div>
+
+  <div class="overlay show" id="startOv">
+    <div class="start">
+      <div class="logo">
+        <div class="stack" role="img" aria-label="転落牌">
+          <div class="ht a">転</div>
+          <div class="ht b">落</div>
+          <div class="ht c">牌</div>
+        </div>
+        <div class="side">
+          <div class="catch">積んで、そろえて、<br>落とさない。</div>
+          <div class="kana">てんらくはい</div>
+        </div>
+      </div>
+      <div class="modebtns"><button class="startbtn" id="startBtn" disabled>じゅんび中…</button><button class="btn endbtn" id="endlessBtn" disabled>∞ エンドレス<small>山がなくなっても続く</small></button></div>
+      <div class="row2"><button class="btn" id="howBtn"><svg class="ic"><use href="#i-book"/></svg>あそびかた</button><button class="btn" id="rankBtn"><svg class="ic"><use href="#i-trophy"/></svg>ランキング</button></div>
+      <div class="row2"><button class="btn" id="colBtn"><svg class="ic"><use href="#i-tiles"/></svg>役コレクション</button><button class="btn locked" id="mbBtn"><svg class="ic"><use href="#i-lock"/></svg>ミュージックボックス</button></div>
+      <div class="dbg" id="dbgBadge" hidden><svg class="ic"><use href="#i-tile"/></svg>役満モード！</div>
+
+      <div class="rec" id="startRec"></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="winOv">
+    <div class="rays"></div>
+    <div class="winbox" id="winBox"></div>
+  </div>
+
+  <div class="overlay" id="overOv">
+    <div class="card">
+      <div class="gtitle">おしまい</div>
+      <div class="hint" id="overReason"></div>
+      <div class="stats" id="overStats"></div>
+      <div class="col">
+        <button class="btn primary" id="againBtn" style="font-size:18px;padding:12px">もう一回あそぶ</button>
+        <button class="btn" id="titleBtn">タイトルにもどる</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="reviveOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:24px">ハートがなくなっちゃった</div>
+      <div class="hint" style="margin:10px 0 18px">動画広告を見ると、ハートが1つ回復して<br>このまま続けられるよ（1ゲームに1回だけ）</div>
+      <div class="col">
+        <button class="btn primary" id="reviveYes" style="font-size:18px;padding:12px">▶︎ 動画を見て続ける</button>
+        <button class="btn" id="reviveNo">やめて結果を見る</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="howOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:32px">あそびかた</div>
+      <div class="howrules">
+        <p><svg class="ic"><use href="#i-tile"/></svg>2枚から好きな牌を選んで、上から落として積もう。</p>
+        <p><svg class="ic"><use href="#i-pointer"/></svg>ドラッグで位置を決めて、指をはなすと落ちる。ピンクの四角が着地点。</p>
+        <p><svg class="ic"><use href="#i-sparkle"/></svg>台の上の牌で役ができたら「ツモ！」を押して点数ゲット。使った牌は消えるよ。</p>
+        <p><svg class="ic"><use href="#i-heartbreak"/></svg>牌が台から落ちるとハートが減る。3つなくなるか、山がなくなったらおしまい。</p>
+      </div>
+      <button class="btn primary" id="howClose" style="width:100%">とじる</button>
+      <div class="credits">効果音の一部：「パチンコ牙狼アーカイブ」（株式会社サンセイアールアンドディ）のフリー素材<br>CR牙狼GOLDSTORM翔　ガロ保留音（赤）・P.F.O.G.出現音・牙狼剣押下成功音</div>
+    </div>
+  </div>
+  <div class="overlay" id="quitOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:30px" id="quitTitle">ゲームをやめる？</div>
+      <div id="customBox" hidden>
+        <div class="clabel">背景<small>（おまかせは 12,000点で星屑、36,000点でオーロラ、そのあとは12,000点ごとに切り替わります）</small></div>
+        <div class="tabs ctabs" id="skyTabs"><button data-v="-1">おまかせ</button><button data-v="0">夕暮れ</button><button data-v="1">星屑</button><button data-v="2">オーロラ</button></div>
+        <div class="clabel">曲<small>（おまかせは 12,000点・36,000点、そのあとは12,000点ごとに切り替わります）</small></div>
+        <div class="tabs ctabs ctr" id="trackTabs"><button data-v="-1">おまかせ</button><button data-v="0">Sakura Drift</button><button data-v="1">星屑ランナー</button><button data-v="2">Beyond the clouds</button></div>
+      </div>
+      <p class="hint" id="quitNote" style="margin:10px 0 18px"></p>
+      <div class="col">
+        <button class="btn primary" id="quitYes" style="font-size:17px;padding:12px">やめる</button>
+        <button class="btn" id="quitNo">つづける</button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" id="colOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:30px">役コレクション</div>
+      <div class="hint" id="colProg"></div>
+      <div id="colInfo" class="colinfo">役をタップすると、作り方と牌の例が見られるよ</div>
+      <div id="colList" class="colgrid"></div>
+      <button class="btn primary" id="colClose" style="width:100%">とじる</button>
+    </div>
+  </div>
+  <div class="overlay" id="rankOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:32px">ランキング</div>
+      <div class="tabs mtabs"><button data-m="0" class="on">ふつう</button><button data-m="1">∞ エンドレス</button></div>
+      <div class="tabs"><button data-k="s" class="on">点数</button><button data-k="h">タワーの高さ</button><button data-k="k">連続和了</button></div>
+      <div id="rankList"></div>
+      <p class="note" id="rankNote">記録はこの端末のブラウザに保存されます</p>
+      <button class="btn" id="gcBtn" hidden style="width:100%;margin-bottom:10px"><svg class="ic"><use href="#i-world"/></svg>世界ランキング（Game Center）</button>
+      <button class="btn primary" id="rankClose" style="width:100%">とじる</button>
+    </div>
+  </div>
+  <div class="overlay" id="mbOv">
+    <div class="card">
+      <div class="gtitle" style="font-size:28px">ミュージックボックス</div>
+      <div id="mbList" style="margin:14px 0"></div>
+      <p class="stream"><svg class="ic"><use href="#i-headphones"/></svg>Apple Music・Spotifyで配信中！<br><a href="https://music.apple.com/jp/album/6816609887" target="_blank" rel="noopener">アルバム「転落牌」を Apple Music で開く</a></p>
+      <button class="btn primary" id="mbClose" style="width:100%">とじる</button>
+    </div>
+  </div>
+  <div id="ymfx"><div class="ym-stage">
+    <div class="ym-rays"></div>
+    <div class="ym-embers" id="ymEmbers"></div>
+    <div class="ym-ring r1"></div><div class="ym-ring r2"></div><div class="ym-ring r3"></div>
+    <div class="ym-glow"></div>
+    <img class="ym-dragon" alt="" src="assets/img/yakuman-dragon.webp">
+    <div class="ym-streak"></div>
+    <img class="ym-text" alt="役満" src="assets/img/yakuman-text.webp">
+  </div><div class="skip">タップでスキップ</div></div>
+  <div id="flash"></div>
+</div>
+
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/cannon.min.js"></script>
+<script src="js/ads.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
