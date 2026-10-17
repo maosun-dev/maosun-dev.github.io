@@ -88,23 +88,28 @@ h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;fon
 .about p{margin:0;color:var(--sub)}
 .site-foot{padding-top:24px;padding-bottom:56px;border-top:1px solid var(--line);font-size:.92rem}
 
-/* ---------- サポート・規約などの下層ページ ---------- */
-main:not(.wrap){padding-top:0;padding-bottom:64px}
-.back{margin:0 -16px 32px;padding:14px 16px;background:var(--felt);font-size:.92rem}
-.back a{color:#fff;font-family:"Dela Gothic One",sans-serif;text-decoration:none;letter-spacing:.04em}
-.back a:hover{text-decoration:underline}
-main:not(.wrap) > h1{font-size:1.75rem;line-height:1.35;margin:0 0 24px}
-.sec{font-size:1.1rem;margin:36px 0 12px;padding-left:12px;border-left:5px solid var(--red)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+/* ---------- 規約・プライバシーポリシー・サポートのページ（転落牌のデザインでそろえる） ---------- */
+.doc-top{background:radial-gradient(120% 90% at 25% 15%,var(--felt) 0%,var(--felt-deep) 100%);color:#fff;padding:14px 0 32px}
+.doc-home{display:inline-block;color:#cfe6da;font-size:.9rem;text-decoration:none;margin-bottom:22px}
+.doc-home:hover{text-decoration:underline}
+.doc-title{display:flex;align-items:center;gap:18px}
+.doc-title img{width:72px;height:72px;border-radius:17px;flex:none;box-shadow:0 6px 0 var(--tile-back),0 10px 14px rgba(0,0,0,.35)}
+.doc-title h1{margin:0;line-height:1.3;font-size:1.65rem;letter-spacing:.03em}
+.doc-title h1 small{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:.95rem;font-weight:700;color:#cfe6da;letter-spacing:.06em;margin-bottom:2px}
+.doc{padding-top:20px;padding-bottom:64px}
+.doc a{word-break:break-all}
+.doc-meta{color:var(--sub);font-size:.88rem;margin:0 0 16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:0 0 16px}
 .card h2,.card h3{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;letter-spacing:0}
-.card h2{font-size:1.15rem;margin:0 0 8px}
+.card h2{font-size:1.08rem;line-height:1.5;margin:-18px -22px 14px;padding:14px 22px 12px 17px;border-left:5px solid var(--red);border-bottom:1px solid var(--line);border-radius:10px 10px 0 0}
 .card h3{font-size:1rem;margin:20px 0 4px}
-.card h3:first-child{margin-top:0}
-.card p{margin:0 0 8px}
-.card p:last-child{margin-bottom:0}
+.card h2 + h3{margin-top:0}
+.card p,.card ul{margin:0 0 8px}
+.card ul{padding-left:1.3em}
+.card > :last-child{margin-bottom:0}
 .mail{font-size:1.1rem;font-weight:700}
 .note{color:var(--sub);font-size:.9rem}
-main:not(.wrap) footer{margin-top:40px;text-align:center;font-size:.92rem}
+.doc-foot{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 20px;font-size:.92rem}
 
 /* ---------- ブログの入口（トップページ） ---------- */
 .blog-entry{padding-top:8px;padding-bottom:40px}
@@ -125,4 +130,8 @@ main:not(.wrap) footer{margin-top:40px;text-align:center;font-size:.92rem}
   .work{grid-template-columns:72px 1fr;gap:16px;padding:28px 0}
   .icon{width:72px;height:72px;border-radius:17px;box-shadow:0 5px 0 var(--line)}
   .work h3{font-size:1.35rem}
+  .doc-title img{width:56px;height:56px;border-radius:13px}
+  .doc-title h1{font-size:1.35rem}
+  .card{padding:16px 18px}
+  .card h2{margin:-16px -18px 12px;padding:12px 18px 10px 13px}
 }
