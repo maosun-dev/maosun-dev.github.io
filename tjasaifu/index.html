@@ -599,6 +599,9 @@ body.phone .ph-licbox pre{flex:1;min-height:0;margin:0;padding:14px 18px 18px;ov
 </div>
 
 <div class="wrap">
+  <aside class="moveNote" id="updNote" role="note" hidden><button type="button" class="updClose" aria-label="このお知らせを閉じる">×</button><b>次の更新のお知らせ</b><p>11月ごろの更新で、<strong>BPM変化（BPMCHANGE）</strong>と <strong>SCROLL</strong> の機能を追加する予定です。テンポが途中で変わる曲や、音符の流れる速さを変える譜面を作れるようになります。</p></aside>
+<style>.moveNote{position:relative;margin:0 0 14px;padding:10px 40px 10px 16px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--roll);border-radius:4px 10px 10px 4px;color:var(--ink);font-size:13.5px;line-height:1.7}.moveNote[hidden]{display:none}.moveNote b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:.04em}.moveNote p{margin:2px 0 0}.moveNote strong{font-weight:700}.updClose{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:18px;line-height:1}.updClose:hover{background:var(--surface2)}</style>
+<script>(function(){var n=document.getElementById('updNote');if(!n)return;var k='tjaUpdNote',t=new Date().toDateString(),seen=false;try{seen=localStorage.getItem(k)===t;if(!seen)localStorage.setItem(k,t)}catch(e){}if(!seen)n.hidden=false;n.querySelector('.updClose').onclick=function(){n.hidden=true}})();</script>
   <header class="top">
     <h1 class="logo"><span class="mark" aria-hidden="true"><i></i><i></i></span>TJA採譜台</h1>
     <div class="files">
