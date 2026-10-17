@@ -60,6 +60,13 @@ h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;fon
 .btn:hover{transform:translateY(1px);box-shadow:0 3px 0 var(--btn-edge)}
 .btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--btn-edge)}
 .soon{color:var(--sub)}
+/* 見つからないページ（404）：最後の 4 が台から落ちている */
+.lost{position:relative}
+.lost-table{padding-bottom:calc(clamp(38px,11.5vw,70px) * .9 + 40px)}
+.stack .fallen{position:absolute;left:calc(100% + var(--t) * .55);bottom:calc(var(--t) * -.62);--r:84deg;--d:.6s}
+.lost-body{padding-top:32px;padding-bottom:64px}
+.lost-body h1{font-size:1.75rem;line-height:1.35;margin:0 0 8px}
+.lost-body p{margin:0 0 20px}
 /* 作っている人 */
 .about{display:flex;gap:16px;align-items:center;padding-top:8px;padding-bottom:40px}
 .about-tile{width:56px;height:56px;flex:none;border-radius:14px}

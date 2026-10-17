@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maosun-dev.com/sitemap.xml
