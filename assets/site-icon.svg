@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="felt" cx="30%" cy="20%" r="100%">
+      <stop offset="0" stop-color="#2a7359"/>
+      <stop offset="1" stop-color="#164536"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset=".7" stop-color="#f7f3e8"/>
+      <stop offset="1" stop-color="#d9d1bc"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#felt)"/>
+  <!-- maosun の「m」を書いた牌 -->
+  <rect x="17" y="10" width="30" height="40" rx="5" fill="#3a9b6e" transform="translate(0 5)"/>
+  <rect x="17" y="10" width="30" height="40" rx="5" fill="url(#face)"/>
+  <path d="M23 39V25M23 30q0-6 4.5-6t4.5 6v9M32 30q0-6 4.5-6t4.5 6v9" fill="none" stroke="#c8323a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

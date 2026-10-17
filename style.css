@@ -60,6 +60,11 @@ h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;fon
 .btn:hover{transform:translateY(1px);box-shadow:0 3px 0 var(--btn-edge)}
 .btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--btn-edge)}
 .soon{color:var(--sub)}
+/* 作っている人 */
+.about{display:flex;gap:16px;align-items:center;padding-top:8px;padding-bottom:40px}
+.about-tile{width:56px;height:56px;flex:none;border-radius:14px}
+.about h2{font-size:1.1rem;margin:0 0 2px}
+.about p{margin:0;color:var(--sub)}
 .site-foot{padding-top:24px;padding-bottom:56px;border-top:1px solid var(--line);font-size:.92rem}
 
 /* ---------- サポート・規約などの下層ページ ---------- */
