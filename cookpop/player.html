@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クックポップの動画</title>
+<style>
+  html,body{height:100%;margin:0;background:#000;color:#fff;font:16px/1.6 sans-serif;overflow:hidden}
+  #p{width:100%;height:100%}
+  #msg{display:flex;align-items:center;justify-content:center;height:100%}
+</style>
+</head>
+<body>
+<div id="p"></div>
+<script>
+(function () {
+  // 親（クックポップのアプリ）へ動画の状態だけを知らせる
+  function send(msg) { parent.postMessage(Object.assign({ source: 'cookpop-player' }, msg), '*'); }
+
+  var id = new URLSearchParams(location.search).get('v') || '';
+  var player = null;
+
+  // 動画IDの形が合わないときは何も埋め込まない
+  if (!/^[\w-]{6,20}$/.test(id)) {
+    var box = document.getElementById('p');
+    box.id = 'msg';
+    box.textContent = '動画が見つかりません';
+    send({ event: 'error', code: 'bad-id' });
+    return;
+  }
+
+  // YouTube の読み込みが終わると呼ばれる
+  window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('p', {
+      videoId: id,
+      host: 'https://www.youtube-nocookie.com',
+      width: '100%',
+      height: '100%',
+      playerVars: { playsinline: 1, rel: 0, origin: location.origin },
+      events: {
+        onReady: function () { send({ event: 'ready' }); },
+        onError: function (e) { send({ event: 'error', code: e.data }); }
+      }
+    });
+  };
+
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  s.onerror = function () { send({ event: 'error', code: 'api' }); };
+  document.head.appendChild(s);
+
+  // 親からの「止めて」を受ける
+  window.addEventListener('message', function (e) {
+    var d = e.data;
+    if (d && d.source === 'cookpop-app' && d.command === 'pause' && player && player.pauseVideo) player.pauseVideo();
+  });
+})();
+</script>
+</body>
+</html>
