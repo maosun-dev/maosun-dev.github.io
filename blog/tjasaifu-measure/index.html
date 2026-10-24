@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TJA採譜台：拍子の変更（#MEASURE）がなかなか作れない理由｜maosun-dev</title>
+<meta name="description" content="要望の多い拍子の変更（#MEASURE）が、なぜすぐには作れないのか。これまで作った機能と大変さを比べてみました。">
+<link rel="icon" type="image/svg+xml" href="/assets/site-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="maosun-dev">
+<meta property="og:title" content="TJA採譜台：拍子の変更（#MEASURE）がなかなか作れない理由｜maosun-dev">
+<meta property="og:description" content="要望の多い拍子の変更（#MEASURE）が、なぜすぐには作れないのか。これまで作った機能と大変さを比べてみました。">
+<meta property="og:image" content="https://maosun-dev.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<link rel="stylesheet" href="/style.css?v=20261018b">
+<link rel="stylesheet" href="/blog/blog.css?v=2">
+</head>
+<body>
+<header class="band"><div class="bwrap"><a class="home" href="/">maosun-dev</a><a class="crumb" href="/blog/">ブログ</a></div></header>
+<div class="bwrap blog">
+<main class="col"><article class="post"><span class="meta"><span class="kind kind-tool">ツール</span><time datetime="2026-10-24">2026.10.24</time></span><h1>TJA採譜台：拍子の変更（#MEASURE）がなかなか作れない理由</h1><ul class="tags"><li><a href="/blog/tag/tjasaifu/">TJA採譜台</a></li><li><a href="/blog/tag/making/">作っている話</a></li></ul>
+<p>こんにちは、maosun です。</p>
+<p>TJA採譜台を使ってくれているみなさん、いつもありがとうございます。動画のコメントなどで、たくさんの意見をいただいています。</p>
+<p>その中でとくに多いのが「拍子の変更に対応してほしい」という声です。3拍子の曲や、途中で拍子が変わる曲を読み込むと、ずれてしまうんですよね。</p>
+<p>この記事では、なぜ拍子の変更がすぐには作れないのかを、これまで作った機能と比べながら書いてみます。</p>
+<p>ツールはこちら：<a href="https://maosun-dev.com/tjasaifu/">https://maosun-dev.com/tjasaifu/</a></p>
+<p class="note">このツールは「太鼓の達人」シリーズの非公式なファンメイドコンテンツです。公式とは関係ありません。</p>
+<hr>
+<h2>#MEASURE ってなに？</h2>
+<p>TJA ファイルでは、`#MEASURE 3/4` のように書くと、そこから拍子が変わります。ふつうは4拍で1小節ですが、3/4 なら3拍で1小節、6/8 なら8分音符6つで1小節になります。</p>
+<p>今の TJA採譜台は、#MEASURE が入った譜面を読み込むと警告を出し、書き出しにはそのまま残します。なので、太鼓さん次郎で遊ぶぶんには壊れません。</p>
+<p>ただ、ツールの画面では全部4拍子として並べてしまうので、拍子が変わったところから小節線と音符がずれて見えてしまいます。</p>
+<h2>なぜ大変なの？</h2>
+<p>TJA採譜台は、最初から「曲を入れるだけで、気軽に譜面が作れる」ことを一番に考えて作ってきました。例に使っている星屑ランナーのように、最近は AI で作った曲で譜面を作る人も多いです。そういう曲のほとんどは4拍子なので、まずは4拍子にしぼって、自動で作る譜面の出来をよくすることを優先しました。</p>
+<p>その代わり、小節線を引くのも、小節の番号を出すのも、ゴーゴータイムも、書き出しも、自動で譜面を作るところも、ぜんぶこの決まりの上に乗っています。</p>
+<p>数えてみたら、この決まりに頼っている場所が約160か所ありました。</p>
+<p>この前追加した <a href="/blog/tjasaifu-update-1-1/">BPM変化や SCROLL</a> は、「時間の流れ」を変えるだけだったので、小節の形はそのままで作れました。でも拍子の変更は「小節の長さ」そのものが変わります。家でいうと、柱を立て直すような作業なんです。</p>
+<h2>これまで作った機能と比べてみた</h2>
+<p>これまで作った機能を、作るのが大変だった順に並べてみました。点線の枠が、まだ作っていない拍子の変更です。</p>
+<figure><a href="img/tjasaifu_measure_tier.png" title="大きく見る"><img src="img/tjasaifu_measure_tier.png" alt="作るのが大変だった順に並べた表。拍子の変更は、全部やるとA、一部だけならB" loading="lazy"></a><figcaption>作るのが大変だった順に並べた表。拍子の変更は、全部やるとA、一部だけならB</figcaption></figure>
+<p>拍子の変更は、どこまでやるかで大変さが変わります。</p>
+<ul><li><strong>一部だけ（B）</strong>：読み込んだ譜面をずれずに表示して、手で直して、正しく書き出せるようにする。自動で作る譜面は4拍子のまま</li><li><strong>全部（A）</strong>：ツールの中で拍子を置けるようにして、自動で作る譜面も3拍子や6/8で作れるようにする</li></ul>
+<p>全部やると、試し叩きと同じくらいの大きな作業になります。自動で作る譜面は、★の難しさに合うように数百回も答え合わせとやり直しをして調整してきたので、3拍子用にまた調整が必要になります。</p>
+<h2>これからのこと</h2>
+<p>いただいた声が多いので、拍子の変更はちゃんと考えていきます！作るとしたら、まずは「一部だけ」から始めるのがよさそうだと思っています。</p>
+<p>時間はかかりそうですが、気長に待ってもらえるとうれしいです。ほかにも「こうなったらいいな」があれば、動画のコメントなどで教えてください！</p>
+<ul class="tags"><li><a href="/blog/tag/tjasaifu/">TJA採譜台</a></li><li><a href="/blog/tag/making/">作っている話</a></li></ul></article></main><aside class="side"><section><h2>タグ</h2><ul class="tagcloud"><li><a href="/blog/tag/tjasaifu/">TJA採譜台<span class="n">3</span></a></li><li><a href="/blog/tag/making/">作っている話<span class="n">1</span></a></li><li><a href="/blog/tag/app/">アプリ<span class="n">1</span></a></li><li><a href="/blog/tag/tenrakuhai/">転落牌<span class="n">1</span></a></li><li><a href="/blog/tag/game/">ゲーム<span class="n">1</span></a></li></ul></section><section><h2>新しい記事</h2><ul class="recent"><li><a href="/blog/tjasaifu-measure/">TJA採譜台：拍子の変更（#MEASURE）がなかなか作れない理由</a><time datetime="2026-10-24">2026.10.24</time></li><li><a href="/blog/tjasaifu-update-1-1/">TJA採譜台をアップデートしました：SCROLL・BPM変化に対応、iPhone アプリも出ました</a><time datetime="2026-10-24">2026.10.24</time></li><li><a href="/blog/tenrakuhai-appstore/">転落牌が App Store に出ました：積んで、そろえて、落とさない麻雀パズル</a><time datetime="2026-10-20">2026.10.20</time></li><li><a href="/blog/tjasaifu-howto/">TJA採譜台の使い方：曲を入れて、太鼓の譜面ができるまで</a><time datetime="2026-10-13">2026.10.13</time></li></ul></section></aside>
+</div>
+<footer class="site-foot bwrap"><a href="/blog/">ブログの一覧へ</a>　<a href="/">トップへ</a>　<a href="/privacy.html">プライバシーポリシー</a></footer>
+</body>
+</html>
