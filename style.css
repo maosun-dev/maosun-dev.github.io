@@ -125,6 +125,26 @@ h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;fon
 .be-card .desc{display:block;font-size:.92rem;color:var(--sub)}
 @media (prefers-reduced-motion:reduce){.be-card{transition:none}}
 
+/* ---------- パソコンの幅：作品を横に並べて、縦を縮める ---------- */
+@media (min-width:960px){
+  .wrap,main{max-width:1120px}
+  /* 作品が1つの棚は半分の幅。空いたところに後ろの棚を詰める（ゲームと音楽が横に並ぶ） */
+  main{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:dense;align-items:start;padding-bottom:40px}
+  .shelf + .shelf{border-top:0}
+  /* 作品が2つ以上の棚は全部の幅を使い、作品を横に並べる */
+  .shelf:has(.work ~ .work){grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));column-gap:40px;
+    margin-top:32px;border-top:1px solid var(--line)}
+  .shelf-title{grid-column:1/-1}
+  /* 作品は「アイコン＋名前」を上に、説明とボタンを下に */
+  .work{grid-template-columns:80px 1fr;grid-template-rows:auto auto 1fr auto;gap:0 18px;padding:24px 0 8px;border-bottom:0}
+  .work .body{display:contents}
+  .work .icon{grid-row:1/3;width:80px;height:80px;border-radius:19px;box-shadow:0 6px 0 var(--line)}
+  .work h3{grid-column:2;align-self:end;font-size:1.4rem;margin:0 0 6px}
+  .work .where{grid-column:2;align-self:start;margin:0}
+  .work p{grid-column:1/-1;margin:18px 0 16px}
+  .work .links{grid-column:1/-1}
+}
+
 @media (max-width:520px){
   .table{padding:40px 0 32px}
   .work{grid-template-columns:72px 1fr;gap:16px;padding:28px 0}
