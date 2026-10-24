@@ -130,10 +130,11 @@ h1,h2,h3,.sec{font-family:"Dela Gothic One","Zen Kaku Gothic New",sans-serif;fon
 }
 
 /* ---------- パソコンの幅：作品を横に並べて、縦を縮める ---------- */
+/* トップページ（body.home）だけ。ほかのページは 760px の1列のまま */
 @media (min-width:960px){
-  .wrap,main{max-width:1120px}
+  .home .wrap,.home main{max-width:1120px}
   /* 作品が1つの棚は半分の幅。空いたところに後ろの棚を詰める（ゲームと音楽が横に並ぶ） */
-  main{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:dense;align-items:start;padding-bottom:40px}
+  .home main{display:grid;grid-template-columns:1fr 1fr;column-gap:56px;grid-auto-flow:dense;align-items:start;padding-bottom:40px}
   .shelf + .shelf{border-top:0}
   /* 作品が2つ以上の棚は全部の幅を使い、作品を横に並べる */
   .shelf:has(.work ~ .work){grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));column-gap:40px;
