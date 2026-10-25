@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#D9A95C" />
+  <title>傾将棋</title>
+  <!-- ブラウザ版（maosun-dev.com/kabukishogi/）を共有したときの題名・説明・画像。画像は npm run web が写す -->
+  <meta name="description" content="定跡なんぞ、札で破れ。術・忍・纏の札を持ち込んで、盤の決まりをひっくり返す将棋。ブラウザで CPU と対局できます。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="傾将棋（かぶきしょうぎ）" />
+  <meta property="og:description" content="定跡なんぞ、札で破れ。術・忍・纏の札を持ち込んで、盤の決まりをひっくり返す将棋。ブラウザで CPU と対局できます。" />
+  <meta property="og:url" content="https://maosun-dev.com/kabukishogi/" />
+  <meta property="og:image" content="https://maosun-dev.com/kabukishogi/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="module" crossorigin src="./assets/index-DhAn061z.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BG91yP3g.css">
+</head>
+<body>
+  <!-- 起動の覆い：コードが動くまで盤の木の色で覆う（iPhone の起動の無地と同じ色。起動の画面が出たら外す） -->
+  <div id="boot-cover" style="position:fixed;inset:0;z-index:1999;background:#D9A95C"></div>
+  <div id="app"></div>
+</body>
+</html>
