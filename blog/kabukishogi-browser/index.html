@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>傾将棋をブラウザで遊べます：札を切れば、盤が傾く将棋｜maosun-dev</title>
+<meta name="description" content="将棋に「札」を足したゲーム「傾将棋」がブラウザで遊べます。札の種類や強さの選び方、実況・配信向けの広い画面を紹介します。">
+<link rel="icon" type="image/svg+xml" href="/assets/site-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="maosun-dev">
+<meta property="og:title" content="傾将棋をブラウザで遊べます：札を切れば、盤が傾く将棋｜maosun-dev">
+<meta property="og:description" content="将棋に「札」を足したゲーム「傾将棋」がブラウザで遊べます。札の種類や強さの選び方、実況・配信向けの広い画面を紹介します。">
+<meta property="og:image" content="https://maosun-dev.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<link rel="stylesheet" href="/style.css?v=20261024b">
+<link rel="stylesheet" href="/blog/blog.css?v=2">
+</head>
+<body>
+<header class="band"><div class="bwrap"><a class="home" href="/">maosun-dev</a><a class="crumb" href="/blog/">ブログ</a></div></header>
+<div class="bwrap blog">
+<main class="col"><article class="post"><span class="meta"><span class="kind kind-game">ゲーム</span><time datetime="2026-11-01">2026.11.01</time></span><h1>傾将棋をブラウザで遊べます：札を切れば、盤が傾く将棋</h1><ul class="tags"><li><a href="/blog/tag/kabukishogi/">傾将棋</a></li><li><a href="/blog/tag/game/">ゲーム</a></li></ul>
+<p>こんにちは、maosun です。</p>
+<p>将棋に「札」を足したゲーム「傾将棋（かぶきしょうぎ）」を作りました。ブラウザですぐ遊べます。無料で、登録もいりません。</p>
+<p>iPhone 版はいま App Store の審査中です。もうすぐ出せると思います。</p>
+<p>この記事では、どんなゲームなのかと、実況・配信で使ってもらうときのことを紹介します。</p>
+<p>ブラウザ版：<a href="https://maosun-dev.com/kabukishogi/">https://maosun-dev.com/kabukishogi/</a></p>
+<figure><a href="img/kabuki_01_title.jpg" title="大きく見る"><img src="img/kabuki_01_title.jpg" alt="傾将棋のタイトル画面" loading="lazy"></a><figcaption>傾将棋のタイトル画面</figcaption></figure>
+<hr>
+<h2>どんなゲーム？</h2>
+<p>駒の動きはふつうの将棋と同じです。ちがうのは、対局の前に「札」を持ち込めることです。</p>
+<p>札を使うと、相手の駒に雷が落ちたり、駒が落とし穴に消えたり、王が仲間と入れ替わったりします。定跡どおりに指していても、札1枚で盤の形がひっくり返ります。</p>
+<p>もうひとつのちがいは、「詰み」がないことです。<strong>王を取ったら勝ち、取られたら負け</strong>です。王手を放っておくこともできますが、そのまま王を取られたら終わりです。</p>
+<figure><a href="img/kabuki_02_rakurai.jpg" title="大きく見る"><img src="img/kabuki_02_rakurai.jpg" alt="落雷の札を使ったところ" loading="lazy"></a><figcaption>落雷の札を使ったところ</figcaption></figure>
+<h2>札は術・忍・纏の3つ</h2>
+<p>札は全部で18枚。術札・忍札・纏札の3つに分かれていて、それぞれ6枚ずつあります。</p>
+<ul><li><strong>術札</strong>：使うとすぐ効く札。たとえば「落雷」は相手の駒1つに雷を落として壊し、まわりの駒をしびれさせます。「入れ替えの術」は自分の駒2つの場所を入れ替えます（王も入れ替えられます）</li><li><strong>忍札</strong>：伏せておく罠の札。相手が条件を満たすと発動します。「落とし穴」はそのマスに入った相手の駒を壊します。相手からは場所が見えません。「身代わり」は、王が取られそうになったとき、となりの味方が代わりにやられて王が助かります</li><li><strong>纏札</strong>：自分の駒に付ける札。「鋼の鎧」は付けた駒を1回だけ守ります。「天馬の蹄」を付けた駒は、桂馬の動きもできるようになります</li></ul>
+<p>対局の前に、コストの合計が10までになるように札を選びます。同じ札は1枚までで、どれも1回きりです。迷ったら「おまかせ」で選ぶこともできます。</p>
+<p>相手が何を持ち込んだかは、対局の前に見られます。どの罠がどこに伏せてあるかを読むのも、このゲームの楽しいところです。</p>
+<figure><a href="img/kabuki_03_deck.jpg" title="大きく見る"><img src="img/kabuki_03_deck.jpg" alt="札選びの画面。コストの合計が10までになるように選ぶ" loading="lazy"></a><figcaption>札選びの画面。コストの合計が10までになるように選ぶ</figcaption></figure>
+<h2>将棋が苦手でも大丈夫</h2>
+<p>じつは、作っている僕も将棋はあまり強くありません。駒の動かし方がわかるくらいです。</p>
+<p>そういう人でも遊べるように、こんな仕組みを入れました。</p>
+<ul><li>タイトル画面の「学」から、遊び方を6ページで読めます（駒の動き・成り・持ち駒・札のことなど）</li><li>駒を選ぶと、動けるマスに印が出ます</li><li>「駒落ち」で、自分か相手の駒を減らしてから始められます</li><li>全部の札の説明は「札図鑑」でいつでも見られます</li></ul>
+<figure><a href="img/kabuki_04_zukan.jpg" title="大きく見る"><img src="img/kabuki_04_zukan.jpg" alt="札図鑑。18枚の札の説明が見られる" loading="lazy"></a><figcaption>札図鑑。18枚の札の説明が見られる</figcaption></figure>
+<h2>相手の強さを選ぶ</h2>
+<p>CPU の強さは2つの段に分かれています。</p>
+<ul><li><strong>序幕</strong>：弱い・ふつう・強い。はじめての人は「弱い」からどうぞ</li><li><strong>大詰</strong>：鬼・師範・傾奇者。札の使い方も将棋もぐっと強くなります。いちばん上の「傾奇者」に勝つと…何かが起きます。ぜひ自分の目で確かめてください</li></ul>
+<p>ほかに「稽古」もあります。相手の札を自分で選べるので、苦手な札への対策を練習できます。</p>
+<h2>実況・配信してくれる人へ</h2>
+<p>傾将棋の実況・配信・動画の投稿は自由です。収益化もかまいません。連絡もいりません。</p>
+<p>曲はすべて Suno の有料プランで作ったもので、配信や動画にそのまま流せます。</p>
+<p>パソコンの横長の画面で開くと、配信で見やすい「広い画面」になります。</p>
+<ul><li>盤を真ん中に大きく出し、左に札の説明、右に駒台と手札を並べます</li><li>相手が使った札や、発動した罠の説明が左上に残るので、見ている人にも何が起きたのか伝わります</li><li>左下に棋譜（最新の5手）、盤のふちに座標（9〜1、一〜九）が出ます。「いまの▲7六歩は…」のように話しやすくなります</li><li>棋譜は設定で消すこともできます</li></ul>
+<figure><a href="img/kabuki_05_wide.jpg" title="大きく見る"><img src="img/kabuki_05_wide.jpg" alt="パソコンの広い画面。左に札の説明と棋譜、まん中に座標つきの盤" loading="lazy"></a><figcaption>パソコンの広い画面。左に札の説明と棋譜、まん中に座標つきの盤</figcaption></figure>
+<h2>iPhone 版について</h2>
+<p>iPhone 版はいま審査中です。iPhone 版では、CPU との対局に加えて、友だちとも対戦できます。近くにいる友だちとは Bluetooth で、離れた友だちとは Game Center でつながります。出たらまたお知らせします！</p>
+<h2>遊んでみてください</h2>
+<p>ブラウザ版：<a href="https://maosun-dev.com/kabukishogi/">https://maosun-dev.com/kabukishogi/</a></p>
+<p>定跡なんぞ、札で破れ。ぜひ一局、指してみてください！</p>
+<ul class="tags"><li><a href="/blog/tag/kabukishogi/">傾将棋</a></li><li><a href="/blog/tag/game/">ゲーム</a></li></ul></article></main><aside class="side"><section><h2>タグ</h2><ul class="tagcloud"><li><a href="/blog/tag/tjasaifu/">TJA採譜台<span class="n">3</span></a></li><li><a href="/blog/tag/game/">ゲーム<span class="n">2</span></a></li><li><a href="/blog/tag/kabukishogi/">傾将棋<span class="n">1</span></a></li><li><a href="/blog/tag/making/">作っている話<span class="n">1</span></a></li><li><a href="/blog/tag/app/">アプリ<span class="n">1</span></a></li><li><a href="/blog/tag/tenrakuhai/">転落牌<span class="n">1</span></a></li></ul></section><section><h2>新しい記事</h2><ul class="recent"><li><a href="/blog/kabukishogi-browser/">傾将棋をブラウザで遊べます：札を切れば、盤が傾く将棋</a><time datetime="2026-11-01">2026.11.01</time></li><li><a href="/blog/tjasaifu-measure/">TJA採譜台：拍子の変更（#MEASURE）がなかなか作れない理由</a><time datetime="2026-10-24">2026.10.24</time></li><li><a href="/blog/tjasaifu-update-1-1/">TJA採譜台をアップデートしました：SCROLL・BPM変化に対応、iPhone アプリも出ました</a><time datetime="2026-10-24">2026.10.24</time></li><li><a href="/blog/tenrakuhai-appstore/">転落牌が App Store に出ました：積んで、そろえて、落とさない麻雀パズル</a><time datetime="2026-10-20">2026.10.20</time></li><li><a href="/blog/tjasaifu-howto/">TJA採譜台の使い方：曲を入れて、太鼓の譜面ができるまで</a><time datetime="2026-10-13">2026.10.13</time></li></ul></section></aside>
+</div>
+<footer class="site-foot bwrap"><a href="/blog/">ブログの一覧へ</a>　<a href="/">トップへ</a>　<a href="/privacy.html">プライバシーポリシー</a></footer>
+</body>
+</html>
