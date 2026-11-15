@@ -777,12 +777,24 @@ body.phone .lang-menu{top:calc(100% + 8px)}
     </ol>
     <p>聯絡：maosun.dev.support@gmail.com</p></div>
   </aside>
-<style>.moveNote{position:relative;margin:0 0 14px;padding:10px 40px 10px 16px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--roll);border-radius:4px 10px 10px 4px;color:var(--ink);font-size:13.5px;line-height:1.7}.moveNote[hidden],.moveNote [hidden]{display:none}.moveNote b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:.04em}.moveNote ul,.moveNote ol{margin:4px 0 0;padding-left:1.3em}.moveNote p{margin:2px 0 0}.moveNote li+li{margin-top:2px}.moveNote b.un-k{font-family:inherit;font-weight:700;font-size:inherit;letter-spacing:0}.moveNote a{color:var(--ka);font-weight:700;white-space:nowrap}.updClose{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:18px;line-height:1}.updClose:hover{background:var(--surface2)}</style>
+<style>.moveNote{position:relative;margin:0 0 14px;padding:10px 40px 10px 16px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--roll);border-radius:4px 10px 10px 4px;color:var(--ink);font-size:13.5px;line-height:1.7}.moveNote[hidden],.moveNote [hidden]{display:none}.moveNote b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:.04em}.moveNote ul,.moveNote ol{margin:4px 0 0;padding-left:1.3em}.moveNote p{margin:2px 0 0}.moveNote li+li{margin-top:2px}.moveNote b.un-k{font-family:inherit;font-weight:700;font-size:inherit;letter-spacing:0}.moveNote a{color:var(--ka);font-weight:700;white-space:nowrap}.updClose{position:absolute;top:6px;right:8px;width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:18px;line-height:1}.updClose:hover{background:var(--surface2)}.moveNote.ph-note{flex:none;margin:12px 20px 0;max-height:48vh;max-height:48dvh;overflow-y:auto;overscroll-behavior:contain;font-size:13px;line-height:1.6}.moveNote.ph-note b{font-size:14px}.phMore{margin-top:6px;padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ka);font:inherit;font-weight:700}.phMore[aria-expanded="true"]{display:none}</style>
 <script>
 // アップデートのお知らせ（端末ごとに1回だけ出す）。言語はツールが決めた <html lang> に合わせる
-document.addEventListener('DOMContentLoaded',function(){var n=document.getElementById('updNote');if(!n)return;var k='tjaUpdNote-android-test',seen=false;try{seen=!!localStorage.getItem(k);if(!seen)localStorage.setItem(k,'1')}catch(e){}
-var l=(document.documentElement.lang||'ja').slice(0,2),pick=n.querySelector('[data-l="'+l+'"]')||n.querySelector('[data-l="en"]');n.querySelectorAll('[data-l]').forEach(function(d){d.hidden=d!==pick});
-var c=n.querySelector('.updClose');c.setAttribute('aria-label',{ja:'このお知らせを閉じる',en:'Close this notice',ko:'이 안내 닫기',zh:'關閉此通知'}[pick.getAttribute('data-l')]);c.onclick=function(){n.hidden=true};if(!seen)n.hidden=false});
+// スマホの画面ではパソコン用の部分が隠れるので、はじめの画面（上の帯の下）へ移して出す。見た印はスマホとパソコンで分ける
+document.addEventListener('DOMContentLoaded',function(){var n=document.getElementById('updNote');if(!n)return;
+var ph=document.body.classList.contains('phone')||/[?&]phone=1(&|$)/.test(location.search)||matchMedia('(pointer: coarse) and (max-height: 500px), (pointer: coarse) and (max-width: 500px)').matches;
+var k='tjaUpdNote-android-test'+(ph?'-ph':''),seen=false;try{seen=!!localStorage.getItem(k)}catch(e){}
+var l=(document.documentElement.lang||'ja').slice(0,2),pick=n.querySelector('[data-l="'+l+'"]')||n.querySelector('[data-l="en"]');l=pick.getAttribute('data-l');n.querySelectorAll('[data-l]').forEach(function(d){d.hidden=d!==pick});
+var c=n.querySelector('.updClose');c.setAttribute('aria-label',{ja:'このお知らせを閉じる',en:'Close this notice',ko:'이 안내 닫기',zh:'關閉此通知'}[l]);c.onclick=function(){n.hidden=true};
+if(seen)return;
+function show(){try{localStorage.setItem(k,'1')}catch(e){}n.hidden=false}
+if(!ph){show();return}
+var tries=0;(function place(){var band=document.querySelector('#ph .ph-band');if(!band){if(++tries<40)setTimeout(place,250);return}
+n.classList.add('ph-note');band.parentNode.insertBefore(n,band.nextSibling);
+var ol=pick.querySelector('ol');if(ol){var rest=[ol];for(var s=ol.nextElementSibling;s;s=s.nextElementSibling)rest.push(s);rest.forEach(function(e){e.hidden=true});
+var b=document.createElement('button');b.type='button';b.className='phMore';b.setAttribute('aria-expanded','false');b.textContent={en:'How to join',ko:'참가 방법',zh:'參加方式'}[l]||'How to join';
+b.onclick=function(){var open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));rest.forEach(function(e){e.hidden=!open})};pick.insertBefore(b,ol)}
+show()})()});
 </script>
 
   <header class="top">
